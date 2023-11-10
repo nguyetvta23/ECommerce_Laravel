@@ -39,8 +39,8 @@ return [
             'host' => 'smtp.gmail.com',
             'port' => 587,
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => 'kingdomsneakers80@gmail.com',
-            'password' => 'cldxnljuzjcosevm',
+            'username' => 'andywu23105@gmail.com',
+            'password' => 'gbaqezhnfhqnbtdf',
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -92,7 +92,7 @@ return [
     */
 
     'from' => [
-        'address' => 'kingdomsneakers80@gmail.com',
+        'address' => 'andywu23105@gmail.com',
         'name' => 'Kingdom Sneakers',
     ],
 

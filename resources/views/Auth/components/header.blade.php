@@ -18,7 +18,7 @@
                                     Hotline: 0978261116
                                 </li>
                                 <li class="language">
-                                    Email: kingdomsneakers80@gmail.com
+                                    Email: andywu23105@gmail.com
                                 </li>
                             </ul>
                         </div>
@@ -351,7 +351,7 @@
                             <a href="#">0123456789</a>
                         </li>
                         <li><i class="fa fa-envelope-o"></i>
-                            <a href="#">kingdomsneakers80@gmail.com</a>
+                            <a href="#">andywu23105@gmail.com</a>
                         </li>
                     </ul>
                 </div>

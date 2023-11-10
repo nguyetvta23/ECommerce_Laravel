@@ -1223,7 +1223,7 @@
                                                                 <p
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
                                                                     <span
-                                                                        style="font-size: 14px; line-height: 19.6px;">kingdomsneakers80@gmail.com</span>
+                                                                        style="font-size: 14px; line-height: 19.6px;">andywu23105@gmail.com</span>
                                                                 </p>
                                                             </div>
 

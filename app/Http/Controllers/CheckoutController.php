@@ -20,12 +20,13 @@ class CheckoutController extends Controller
         return view('Auth.checkout.checkout')->with(compact('province'));
     }
 
-    public function check_coupon(Request $request){
+    public function check_coupon(Request $request)
+    {
         // 
-        $coupon = Coupon::where('coupon_code', $request->coupon_code)->where('coupon_expired', '>' , date("Y/m/d"))->where('coupon_time', '>', 0)->first();
-        if($coupon){
+        $coupon = Coupon::where('coupon_code', $request->coupon_code)->where('coupon_expired', '>', date("Y/m/d"))->where('coupon_time', '>', 0)->first();
+        if ($coupon) {
             return ['data' => $coupon, 'message' => 'Áp dụng mã giảm giá thành công', 'coupon_id' => $coupon->id];
-        }else {
+        } else {
             return ['message' => 'Mã giảm giá không hợp hợp lệ!'];
         }
     }
@@ -53,9 +54,9 @@ class CheckoutController extends Controller
     {
         try {
             $fee = TransportFee::where('m_province_id', $request->pro)->where('m_district_id', $request->dis)->where('m_ward_id', $request->war)->first();
-            return ['m_fee_ship'=> number_format($fee->m_fee_ship), 'total'=>number_format(Cart::total(0, '.', '') + $fee->m_fee_ship)];
+            return ['m_fee_ship' => number_format($fee->m_fee_ship), 'total' => number_format(Cart::total(0, '.', '') + $fee->m_fee_ship)];
         } catch (\Throwable $th) {
-            return ['m_fee_ship'=> number_format(50000), 'total'=>number_format(Cart::total(0, '.', '') + 50000)];
+            return ['m_fee_ship' => number_format(50000), 'total' => number_format(Cart::total(0, '.', '') + 50000)];
         }
     }
     public function execPostRequest($url, $data)
@@ -199,7 +200,7 @@ class CheckoutController extends Controller
         $data = [];
         $pay = "Thanh toán bằng tiền mặt khi nhận hàng";
         if (isset($request->vnp_SecureHash)) {
-            
+
             $result = "";
             $vnp_HashSecret = "CJRTNUCTOILPABSOZDOITQERKIMEGDYI";
             $vnp_SecureHash = $_GET['vnp_SecureHash'];
@@ -241,7 +242,6 @@ class CheckoutController extends Controller
             $data = ["message" => $result];
         }
         if (isset($request->partnerCode)) {
-           
             $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 
             $partnerCode = $_GET["partnerCode"];
@@ -285,9 +285,9 @@ class CheckoutController extends Controller
         $to_name = "Kingdom Sneakers Shop";
         $to_mail = $lastOrder[0]->m_email;
         $data = array("order" => $lastOrder[0], 'pay' => $pay);
-        Mail::send('Auth.checkout.order-mail', $data, function($message) use ($to_name, $to_mail, $lastOrder){
+        Mail::send('Auth.checkout.order-mail', $data, function ($message) use ($to_name, $to_mail, $lastOrder) {
             $message->to($to_mail)->subject('Xác nhận đơn hàng #' . $lastOrder[0]->id);
-            $message->from('kingdomsneakers80@gmail.com', $to_name);
+            $message->from('andywu23105@gmail.com', $to_name);
         });
         Cart::destroy();
         return view('Auth.checkout.success', $data);
