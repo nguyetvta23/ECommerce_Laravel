@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2023 at 06:59 AM
+-- Generation Time: Apr 16, 2024 at 04:15 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -752,6 +752,22 @@ INSERT INTO `district` (`id`, `_name`, `_prefix`, `_province_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -767,7 +783,10 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (21, '2014_10_12_100000_create_password_resets_table', 1),
-(22, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(22, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(23, '2014_10_12_000000_create_users_table', 2),
+(24, '2014_10_12_100000_create_password_reset_tokens_table', 2),
+(25, '2019_08_19_000000_create_failed_jobs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -787,6 +806,18 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('Nguyetvo1305@gmail.com', '$2y$10$xshgYM5.ZTGqIrLmxTjxT.RmE3uLQh4y8hZD0AdgX1h9i44tPT82y', '2022-08-17 15:47:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -35852,7 +35883,8 @@ INSERT INTO `t_order` (`id`, `m_id_user`, `m_name`, `m_email`, `m_address`, `m_p
 (76, 2, 'Admin', 'admin@gmail.com', '11,Xã Bàu Chinh,Huyện Châu Đức,Bà Rịa Vũng Tàu', '0978261116', 'adasdasd', 5926910, 50000, 0, 0, 0, 0, '2023-11-10 05:52:12', '2023-11-10 05:52:12'),
 (77, 2, 'Admin', 'admin@gmail.com', '11,Thị trấn Ngãi Giao,Huyện Châu Đức,Bà Rịa Vũng Tàu', '0978261116', 'sấz', 5926910, 50000, 0, 0, 0, 0, '2023-11-10 05:53:37', '2023-11-10 05:53:37'),
 (78, 2, 'Admin', 'admin@gmail.com', '11,Xã Láng Dài,Huyện Đất Đỏ,Bà Rịa Vũng Tàu', '0978261116', 'xvsdvdx', 5926910, 50000, 0, 0, 0, 0, '2023-11-10 05:56:21', '2023-11-10 05:56:21'),
-(79, 2, 'Admin', 'nguyetvta23@gmail.com', '11,Xã Bàu Chinh,Huyện Châu Đức,Bà Rịa Vũng Tàu', '0978261116', 'ádasdas', 8756000, 50000, 0, 0, 0, 0, '2023-11-10 05:57:42', '2023-11-10 05:57:42');
+(79, 2, 'Admin', 'nguyetvta23@gmail.com', '11,Xã Bàu Chinh,Huyện Châu Đức,Bà Rịa Vũng Tàu', '0978261116', 'ádasdas', 8756000, 50000, 0, 0, 0, 0, '2023-11-10 05:57:42', '2023-11-10 05:57:42'),
+(80, 17, 'Andy Võ', 'abc@gmail.com', '11,Xã Long Điền,Huyện Long Điền,Bà Rịa Vũng Tàu', '0978261117', 'dfdfg', 2771010, 50000, 0, 0, 1, 0, '2024-04-09 04:56:49', '2024-04-09 04:58:23');
 
 -- --------------------------------------------------------
 
@@ -35900,7 +35932,8 @@ INSERT INTO `t_order_detail` (`id`, `m_id_order`, `m_size`, `m_id_product`, `m_p
 (88, 77, 35, 4, 2519100, 1, 'Giày Lifestyle Unisex Puma Intl 375149', '2023-11-10 05:53:37', '2023-11-10 05:53:37'),
 (89, 78, 40, 52, 2869000, 1, 'Giày Lifestyle Nữ Nike Af1 Shadow Se CV8480', '2023-11-10 05:56:21', '2023-11-10 05:56:21'),
 (90, 78, 35, 4, 2519100, 1, 'Giày Lifestyle Unisex Puma Intl 375149', '2023-11-10 05:56:21', '2023-11-10 05:56:21'),
-(91, 79, 33, 49, 1990000, 4, 'Giày Lifestyle Skechers 896033', '2023-11-10 05:57:42', '2023-11-10 05:57:42');
+(91, 79, 33, 49, 1990000, 4, 'Giày Lifestyle Skechers 896033', '2023-11-10 05:57:42', '2023-11-10 05:57:42'),
+(92, 80, 34, 4, 2519100, 1, 'Giày Lifestyle Unisex Puma Intl 375149', '2024-04-09 04:56:49', '2024-04-09 04:56:49');
 
 -- --------------------------------------------------------
 
@@ -35973,7 +36006,7 @@ CREATE TABLE `t_product` (
 
 INSERT INTO `t_product` (`id`, `m_id_category`, `m_product_name`, `m_product_slug`, `m_short_description`, `m_description`, `m_picture`, `m_price`, `m_original_price`, `m_buy`, `m_view`, `m_status`, `created_at`, `updated_at`) VALUES
 (3, 3, 'Giày Chạy Bộ Nữ Reebok Zig Kinetica 2.5 GX6239', 'giay-chay-bo-nu-reebok-zig-kinetica-25-gx6239.html', '<p>SKU:&nbsp;GX6239</p>\r\n\r\n<p>Chất liệu:&nbsp;Vải dệt kỹ thuật số 360 độ</p>\r\n\r\n<p>M&agrave;u sắc:&nbsp;M&agrave;u Be</p>', '<p>SKU:&nbsp;GX6239</p>\r\n\r\n<p>Chất liệu:&nbsp;Vải dệt kỹ thuật số 360 độ</p>\r\n\r\n<p>M&agrave;u sắc:&nbsp;M&agrave;u Be</p>', '[\"1660381514-sanpham.1.jpg\",\"1660381514-sanpham.2.jpg\",\"1660381514-sanpham.3.jpg\",\"1660381514-sanpham.4.jpg\",\"1660381514-sanpham.5.jpg\",\"1660381514-sanpham.6.jpg\",\"1660381514-sanpham.7.jpg\",\"1660381514-sanpham.8.jpg\"]', 3500000, 2368800, 1, 1, 1, '2022-08-13 09:05:14', '2022-08-27 10:46:12'),
-(4, 24, 'Giày Lifestyle Unisex Puma Intl 375149', 'giay-lifestyle-unisex-puma-intl-375149.html', '<ul>\r\n	<li>Thương hi&ecirc;̣u: Puma (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Unisex</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt</li>\r\n	<li>Kiểu d&aacute;ng: Gi&agrave;y cổ thấp</li>\r\n	<li>Loại giày: Thể thao lifestyle (thời trang)</li>\r\n</ul>', '<ul>\r\n	<li>Thương hi&ecirc;̣u: Puma (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Unisex</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt</li>\r\n	<li>Kiểu d&aacute;ng: Gi&agrave;y cổ thấp</li>\r\n	<li>Loại giày: Thể thao lifestyle (thời trang)</li>\r\n</ul>', '[\"1660382571-sanpham.1.jpg\",\"1660382571-sanpham.2.jpg\",\"1660382571-sanpham.3.jpg\",\"1660382571-sanpham.4.jpg\",\"1660382571-sanpham.5.jpg\",\"1660382571-sanpham.6.jpg\",\"1660382571-sanpham.7.jpg\",\"1660382571-sanpham.8.jpg\"]', 3499000, 2519100, 5, 1, 1, '2022-08-13 09:22:51', '2023-11-10 05:56:21'),
+(4, 24, 'Giày Lifestyle Unisex Puma Intl 375149', 'giay-lifestyle-unisex-puma-intl-375149.html', '<ul>\r\n	<li>Thương hi&ecirc;̣u: Puma (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Unisex</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt</li>\r\n	<li>Kiểu d&aacute;ng: Gi&agrave;y cổ thấp</li>\r\n	<li>Loại giày: Thể thao lifestyle (thời trang)</li>\r\n</ul>', '<ul>\r\n	<li>Thương hi&ecirc;̣u: Puma (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Unisex</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt</li>\r\n	<li>Kiểu d&aacute;ng: Gi&agrave;y cổ thấp</li>\r\n	<li>Loại giày: Thể thao lifestyle (thời trang)</li>\r\n</ul>', '[\"1660382571-sanpham.1.jpg\",\"1660382571-sanpham.2.jpg\",\"1660382571-sanpham.3.jpg\",\"1660382571-sanpham.4.jpg\",\"1660382571-sanpham.5.jpg\",\"1660382571-sanpham.6.jpg\",\"1660382571-sanpham.7.jpg\",\"1660382571-sanpham.8.jpg\"]', 3499000, 2519100, 6, 1, 1, '2022-08-13 09:22:51', '2024-04-09 04:56:49'),
 (5, 18, 'Giày Lifestyle Unisex Puma Rs-X 380462-01', 'giay-lifestyle-unisex-puma-rs-x-380462-01.html', '<ul>\r\n	<li>Thương hi&ecirc;̣u: Puma (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Unisex</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt</li>\r\n	<li>C&ocirc;ng nghệ: Running System</li>\r\n	<li>Đế: Cao su</li>\r\n	<li>Kiểu d&aacute;ng: Gi&agrave;y cổ thấp</li>\r\n	<li>Loại già', '<p><strong>Th&ocirc;ng tin thương hiệu Puma</strong></p>\r\n\r\n<p><img alt=\"Puma\" src=\"https://cdn.tgdd.vn/2021/12/Sports/Images/54/logo-puma-new-216x78.png\" /></p>\r\n\r\n<p>- Thương hiệu của Đức.</p>\r\n\r\n<p>- Được th&agrave;nh lập v&agrave;o năm 1924.</p>\r\n\r\n<p>- Th&agrave;nh tựu: Puma l&agrave; một trong những thương hiệu gi&agrave;y h&agrave;ng đầu tại Đức v&agrave; thuộc top c&aacute;c sản phẩm thể thao tốt nhất thế giới hiện nay.</p>\r\n\r\n<p>- C&aacute;c d&ograve;ng sản phẩm ch&iacute;nh: Puma c&oacute; 5 d&ograve;ng sản phẩm ch&iacute;nh, được chia theo chức năng gồm phong c&aacute;ch thể thao, sản phẩm cho b&oacute;ng rổ, sản phẩm cho chạy bộ, thể thao đồng đội v&agrave; thể thao m&ocirc; t&ocirc;. Trong từng d&ograve;ng, Puma cung cấp đa dạng sản phẩm từ gi&agrave;y thể thao, quần &aacute;o thể thao đến c&aacute;c phụ kiện thể thao chuy&ecirc;n dụng.</p>\r\n\r\n<p><strong>Đặc điểm nổi bật:</strong></p>\r\n\r\n<ul>\r\n	<li>Phần th&acirc;n&nbsp;<a href=\"https://www.avasport.com/giay-puma\" target=\"_blank\">gi&agrave;y Puma</a>&nbsp;được l&agrave;m từ chất liệu vải dệt mềm cho cảm gi&aacute;c thoải m&aacute;i c&ugrave;ng khả năng thấm h&uacute;t mồ h&ocirc;i cao</li>\r\n	<li>Gi&agrave;y&nbsp;<a href=\"https://www.avasport.com/giay/giay-lifestyle-unisex-puma-rs-x-380462-01\" target=\"_blank\">Puma 380462</a>&nbsp;sở hữu c&ocirc;ng nghệ Running System mang đến khả năng ph&acirc;n t&aacute;n lực tốt, giảm thiểu sự t&aacute;c động l&ecirc;n đ&ocirc;i ch&acirc;n của bạn</li>\r\n	<li>Đế cao su gi&uacute;p&nbsp;<a href=\"https://www.avasport.com/giay\" target=\"_blank\">gi&agrave;y</a>&nbsp;hạn chế sự trơn trượt, tăng ma s&aacute;t v&agrave; b&aacute;m đường được hiệu quả hơn</li>\r\n	<li>Thiết kế cổ thấp hiện đại, trẻ trung v&agrave; ph&ugrave; hợp với nhiều loại trang phục kh&aacute;c nhau</li>\r\n</ul>\r\n\r\n<p><img src=\"chrome-extension://bpggmmljdiliancllaapiggllnkbjocb/logo/48.png\" /></p>', '[\"1660382957-sanpham.1.jpg\",\"1660382957-sanpham.2.jpg\",\"1660382957-sanpham.3.jpg\",\"1660382957-sanpham.4.jpg\",\"1660382957-sanpham.5.jpg\",\"1660382957-sanpham.6.jpg\",\"1660382957-sanpham.7.jpg\",\"1660382957-sanpham.8.jpg\"]', 3299000, 2256345, 1, 1, 1, '2022-08-13 09:29:17', '2022-08-27 10:46:12'),
 (6, 48, 'Giày Chạy Bộ Nữ Adidas ULTRABOOST 22 W GX5928', 'giay-chay-bo-nu-adidas-ultraboost-22-w-gx5928.html', '<ul>\r\n	<li>Thương hi&ecirc;̣u: Adidas (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Nam, Nữ</li>\r\n	<li>M&ocirc;n th&ecirc;̉ thao: Chạy bộ/ Đi bộ</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt</li>\r\n	<li>C&ocirc;ng nghệ: Boost Adidas Primeknit</li>\r\n	<li>Đế: Cao su</li>\r', '<p><strong>Th&ocirc;ng tin thương hiệu Adidas</strong></p>\r\n\r\n<p><img alt=\"Adidas\" src=\"https://cdn.tgdd.vn/2022/04/Sports/Images/2/logo-adidass-216x78.png\" /></p>\r\n\r\n<p>- Thương hiệu của Đức.</p>\r\n\r\n<p>- Được th&agrave;nh lập v&agrave;o năm 1924.</p>\r\n\r\n<p>- Th&agrave;nh tựu: Thương hiệu gi&agrave;y thể thao đứng thứ 2 thế giới chỉ sau Nike, t&iacute;nh đến năm 2020.</p>\r\n\r\n<p>- C&aacute;c d&ograve;ng sản phẩm ch&iacute;nh: gi&agrave;y thể thao, quần &aacute;o thể thao v&agrave; phụ kiện thể thao phục vụ cho nhu cầu luyện tập c&aacute;c m&ocirc;n thể thao phổ biến, ở mọi độ tuổi v&agrave; giới t&iacute;nh.</p>\r\n\r\n<p>&nbsp;</p>', '[\"1660383790-sanpham.1.jpg\",\"1660383790-sanpham.2.jpg\",\"1660383790-sanpham.3.jpg\",\"1660383790-sanpham.4.jpg\",\"1660383790-sanpham.5.jpg\",\"1660383790-sanpham.6.jpg\",\"1660383790-sanpham.7.jpg\"]', 5200000, 4680000, 1, 1, 1, '2022-08-13 09:43:10', '2022-08-27 10:46:12'),
 (7, 48, 'Giày Chạy Bộ Nữ Adidas SOLAR GLIDE 5 W GX6719', 'giay-chay-bo-nu-adidas-solar-glide-5-w-gx6719.html', '<ul>\r\n	<li><strong>Th&ocirc;ng tin</strong></li>\r\n	<li>Thương hi&ecirc;̣u: Adidas (Đức)</li>\r\n	<li>Ph&ugrave; hợp với: Nữ</li>\r\n	<li>M&ocirc;n th&ecirc;̉ thao: Chạy bộ/ Đi bộ</li>\r\n	<li>Chất liệu th&acirc;n: Vải dệt kim tr&ograve;n</li>\r\n	<li>C&ocirc;ng n', '<p><strong>Th&ocirc;ng tin thương hiệu Adidas</strong></p>\r\n\r\n<p><img alt=\"Adidas\" src=\"https://cdn.tgdd.vn/2022/04/Sports/Images/2/logo-adidass-216x78.png\" /></p>\r\n\r\n<p>- Thương hiệu của Đức.</p>\r\n\r\n<p>- Được th&agrave;nh lập v&agrave;o năm 1924.</p>\r\n\r\n<p>- Th&agrave;nh tựu: Thương hiệu gi&agrave;y thể thao đứng thứ 2 thế giới chỉ sau Nike, t&iacute;nh đến năm 2020.</p>\r\n\r\n<p>- C&aacute;c d&ograve;ng sản phẩm ch&iacute;nh: gi&agrave;y thể thao, quần &aacute;o thể thao v&agrave; phụ kiện thể thao phục vụ cho nhu cầu luyện tập c&aacute;c m&ocirc;n thể thao phổ biến, ở mọi độ tuổi v&agrave; giới t&iacute;nh.</p>', '[\"1660384024-sanpham.1.jpg\",\"1660384024-sanpham.2.jpg\",\"1660384024-sanpham.3.jpg\",\"1660384024-sanpham.4.jpg\"]', 3800000, 3420000, 1, 1, 1, '2022-08-13 09:47:04', '2022-08-27 10:46:12'),
@@ -36076,7 +36109,7 @@ INSERT INTO `t_product_inventory` (`id`, `m_id_product`, `m_quanti`, `m_size`) V
 (62, 51, 5, '40'),
 (63, 52, -9, '40'),
 (68, 4, 10, '33'),
-(69, 4, 10, '34'),
+(69, 4, 9, '34'),
 (70, 4, 6, '35'),
 (71, 4, 2, '36'),
 (72, 4, 10, '37'),
@@ -36356,7 +36389,8 @@ INSERT INTO `t_user` (`id`, `name`, `email`, `phone`, `role`, `multiple_role`, `
 (9, 'Mason Schoen', 'thyatt@example.com', NULL, 0, 0, '344 Mayra Fall\nWest Santina, MS 81560', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2022-08-13 02:55:07', 0, NULL, 'ndp2GNo4Er', '2022-08-13 02:55:07', '2022-08-13 02:55:07'),
 (10, 'Jaquelin Feeney II', 'fbarrows@example.com', NULL, 0, 0, '88067 O\'Reilly Inlet\nTowneside, MS 41893', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2022-08-13 02:55:07', 0, NULL, 'J3iXXw1Z8h', '2022-08-13 02:55:07', '2022-08-13 02:55:07'),
 (11, 'Earline Weber', 'lind.nathen@example.org', NULL, 0, 0, '315 Donnelly Plain Suite 029\nEast Diegomouth, WA 97673', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2022-08-13 02:55:07', 0, NULL, '5JAsZn0S96', '2022-08-13 02:55:07', '2022-08-13 02:55:07'),
-(12, 'Pedro Yundt', 'dach.gordon@example.org', NULL, 0, 0, '361 Hortense Trafficway\nLake Mariana, WY 39984', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2022-08-13 02:55:07', 0, NULL, 'QtsVnxcpOn', '2022-08-13 02:55:07', '2022-08-13 02:55:07');
+(12, 'Pedro Yundt', 'dach.gordon@example.org', NULL, 0, 0, '361 Hortense Trafficway\nLake Mariana, WY 39984', NULL, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2022-08-13 02:55:07', 0, NULL, 'QtsVnxcpOn', '2022-08-13 02:55:07', '2022-08-13 02:55:07'),
+(17, 'Andy Võ', 'abc@gmail.com', NULL, 1, 0, NULL, NULL, '$2y$10$zFtbhefdzVxPvUY1zNCX2e4Suy1.VNDQv1RO1L7NoWhe07GaTckQG', NULL, 0, NULL, NULL, '2024-04-09 04:54:06', '2024-04-09 04:54:06');
 
 -- --------------------------------------------------------
 
@@ -36382,6 +36416,30 @@ INSERT INTO `t_user_favourite` (`id_user`, `id_product`) VALUES
 (2, 4),
 (2, 47),
 (2, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyet', 'nguyetvta23@gmail.com', NULL, '$2y$12$8gM5groEQ0v2QwAROePov./iw899NEvOiDiGXvH.1aeQYzMfqLY2C', NULL, '2023-12-10 23:59:25', '2023-12-10 23:59:25');
 
 -- --------------------------------------------------------
 
@@ -47705,6 +47763,13 @@ ALTER TABLE `district`
   ADD KEY `_province_id` (`_province_id`);
 
 --
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -47715,6 +47780,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `personal_access_tokens`
@@ -47834,6 +47905,13 @@ ALTER TABLE `t_user`
   ADD UNIQUE KEY `t_user_email_unique` (`email`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
 -- Indexes for table `ward`
 --
 ALTER TABLE `ward`
@@ -47851,10 +47929,16 @@ ALTER TABLE `district`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=710;
 
 --
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -47914,13 +47998,13 @@ ALTER TABLE `t_coupon`
 -- AUTO_INCREMENT for table `t_order`
 --
 ALTER TABLE `t_order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `t_order_detail`
 --
 ALTER TABLE `t_order_detail`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `t_post`
@@ -47956,7 +48040,13 @@ ALTER TABLE `t_transport_fee`
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ward`
